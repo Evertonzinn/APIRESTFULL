@@ -1,0 +1,110 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "version": "1.0.0",
+      "title": "User API",
+      "description": "API REST para gerenciamento de usuários"
+    },
+    "host": "localhost:5000",
+    "basePath": "/api/users",
+    "schemes": ["http"],
+    "paths": {
+      "/": {
+        "get": {
+          "summary": "Lista todos os usuários",
+          "responses": {
+            "200": {
+              "description": "Lista de usuários"
+            }
+          }
+        },
+        "post": {
+          "summary": "Cria um novo usuário",
+          "parameters": [
+            {
+              "in": "body",
+              "name": "user",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/User"
+              }
+            }
+          ],
+          "responses": {
+            "201": {
+              "description": "Usuário criado"
+            }
+          }
+        }
+      },
+      "/{id}": {
+        "get": {
+          "summary": "Busca usuário por ID",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Detalhes do usuário"
+            }
+          }
+        },
+        "put": {
+          "summary": "Atualiza um usuário",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "in": "body",
+              "name": "user",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/User"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Usuário atualizado"
+            }
+          }
+        },
+        "delete": {
+          "summary": "Deleta um usuário",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Usuário deletado"
+            }
+          }
+        }
+      }
+    },
+    "definitions": {
+      "User": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "email": { "type": "string" },
+          "age": { "type": "integer" }
+        }
+      }
+    }
+  }
+  
